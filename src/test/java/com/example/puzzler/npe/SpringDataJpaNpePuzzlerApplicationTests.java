@@ -3,8 +3,6 @@ package com.example.puzzler.npe;
 import com.example.puzzler.npe.entities.Author;
 import com.example.puzzler.npe.entities.Book;
 import com.example.puzzler.npe.entities.BookId;
-import org.checkerframework.checker.units.qual.A;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -30,15 +28,14 @@ class SpringDataJpaNpePuzzlerApplicationTests {
     @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = "delete-products.sql")
     void TestNpeOnCompositeKey(){
         BookId id = new BookId();
-        Author author = new Author();
-        author.setId(1L);
+
         id.setId(1L);
-        id.setAuthor(author);
+        id.setAuthorId(1L);
 
         Book book = bookRepository.findById(id).orElseThrow();
         assertNotNull(book);
         assertEquals("From 800m to marathon", book.getTitle());
-        assertEquals("Jack Daniels", book.getBookId().getAuthor().getName());
+        assertEquals("Jack Daniels", book.getAuthor().getName());
     }
 
 }

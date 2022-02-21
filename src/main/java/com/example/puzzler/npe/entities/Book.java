@@ -1,9 +1,6 @@
 package com.example.puzzler.npe.entities;
 
-import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "book")
@@ -14,6 +11,18 @@ public class Book {
 
     @Column(name = "title")
     private String title;
+
+    @ManyToOne
+    @MapsId("authorId")
+    private Author author;
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
+    }
 
     public String getTitle() {
         return title;

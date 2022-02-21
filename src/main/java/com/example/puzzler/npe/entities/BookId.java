@@ -14,16 +14,15 @@ public class BookId implements Serializable {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "author_id", nullable = false)
-    private Author author;
+    @Column(name = "author_id", nullable = false)
+    private Long authorId;
 
-    public Author getAuthor() {
-        return author;
+    public Long getAuthorId() {
+        return authorId;
     }
 
-    public void setAuthor(Author author) {
-        this.author = author;
+    public void setAuthorId(Long authorId) {
+        this.authorId = authorId;
     }
 
     public Long getId() {
@@ -36,7 +35,7 @@ public class BookId implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(author, id);
+        return Objects.hash(authorId, id);
     }
 
     @Override
@@ -44,7 +43,7 @@ public class BookId implements Serializable {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
         BookId entity = (BookId) o;
-        return Objects.equals(this.author, entity.author) &&
+        return Objects.equals(this.authorId, entity.authorId) &&
                 Objects.equals(this.id, entity.id);
     }
 }
