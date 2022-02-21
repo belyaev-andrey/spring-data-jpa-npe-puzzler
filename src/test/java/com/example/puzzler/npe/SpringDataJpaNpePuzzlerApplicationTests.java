@@ -28,6 +28,17 @@ class SpringDataJpaNpePuzzlerApplicationTests {
     @Test
     @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "insert-products.sql")
     @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = "delete-products.sql")
+    void TestFetchByPartialCompositeKey(){
+        Book book = bookRepository.findByBookId_Author_Id(1L);
+        assertNotNull(book);
+        assertEquals("From 800m to marathon", book.getTitle());
+        assertEquals("Jack Daniels", book.getBookId().getAuthor().getName());
+    }
+
+
+    @Test
+    @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "insert-products.sql")
+    @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = "delete-products.sql")
     void TestNpeOnCompositeKey(){
         BookId id = new BookId();
         Author author = new Author();

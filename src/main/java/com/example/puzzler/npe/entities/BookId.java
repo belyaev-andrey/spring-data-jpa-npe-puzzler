@@ -14,7 +14,7 @@ public class BookId implements Serializable {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "author_id", nullable = false)
     private Author author;
 
