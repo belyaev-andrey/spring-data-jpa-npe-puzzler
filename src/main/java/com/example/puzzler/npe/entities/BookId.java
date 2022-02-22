@@ -1,6 +1,8 @@
 package com.example.puzzler.npe.entities;
 
 import org.hibernate.Hibernate;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.io.Serializable;
